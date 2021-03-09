@@ -10,7 +10,7 @@ package triangles;
  */
 public class Triangles
 {
-//*triangle1*************************************************************************
+//*triangle1***************************************************************************
 //Prints the first triangle
     public static void triangle1()
     {
