@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class GuessingGame
 {
-//*randGen*************************************************************************
+//*randGen***************************************************************************
 //Generates the random number
     public static int randGen()
     {
