@@ -6,7 +6,7 @@ package triangles;
  * System:     Windows 7 Enterprise - Netbeans 12
  * 
  * Purpose:    To print out a series of triangles based on the powerpoint from
- * class
+ * class. These are based on the figure in slide 18.
  */
 public class Triangles
 {
