@@ -16,7 +16,7 @@ public class DayTwo
 {
 //*varArgAdd***************************************************************************** 
     //gets input from command line and tries to add it
-    public static void varArgAdd(String [] args)
+    public static Double varArgAdd(String [] args)
     {
         //variables
         Double sum = 0.0;
@@ -47,6 +47,8 @@ public class DayTwo
         
         //output result
         System.out.println("Sum of arguments: " + df.format(sum));
+        
+        return sum;
     }
     
 //*findArrayMax***************************************************************************** 
@@ -96,10 +98,15 @@ public class DayTwo
         //output the index of the biggest value
         System.out.println("\nThe biggest value in the array is at " + rowMax +
                 "," + colMax);
+        
     }
     
 //*shapes*****************************************************************************  
     //Creates various shape objects and displays their areas
+    public static void shapes()
+    {
+        
+    }
     
 //*main*****************************************************************************    
     public static void main(String[] args)
@@ -109,5 +116,8 @@ public class DayTwo
        
        //create 2d array and find the largest value in it
        findArrayMax();
+       
+       //create various shapes
+       shapes();
     }   
 }
