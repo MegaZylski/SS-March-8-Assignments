@@ -51,6 +51,52 @@ public class DayTwo
     
 //*findArrayMax***************************************************************************** 
     //Tries to find the largest point in a 2D array
+    public static void findArrayMax()
+    {
+        //variables
+        Integer [] [] arr = new Integer [5][2];
+        Integer rows = arr.length;
+        Integer cols = arr[0].length;
+                
+        //initialize array
+        for(int i = 0; i < rows; i++)
+        {
+            for(int j = 0; j < cols; j++)
+            {
+                arr[i][j] = 0;
+            }
+        }
+        
+        //initialize biggest num indexes
+        Integer biggest = arr[0][0];
+        Integer rowMax = 0;
+        Integer colMax = 0;
+        
+        //add some values
+        arr[1][0] = 512;
+        arr[3][1] = 2048;
+        arr[4][1] = 1024;
+        arr[0][1] = 256;
+        
+        //loop through the array and find the indexes of the biggest num
+        for(int i = 0; i < rows; i++)
+        {
+            for(int j = 0; j < cols; j++)
+            {
+                if(arr[i][j] > biggest)
+                {
+                    //set new biggest if current index is bigger
+                    biggest = arr[i][j];
+                    rowMax = i;
+                    colMax = j;
+                }
+            }
+        }
+        
+        //output the index of the biggest value
+        System.out.println("\nThe biggest value in the array is at " + rowMax +
+                "," + colMax);
+    }
     
 //*shapes*****************************************************************************  
     //Creates various shape objects and displays their areas
@@ -60,5 +106,8 @@ public class DayTwo
     {
         //get input from command line and add it
        varArgAdd(args);
+       
+       //create 2d array and find the largest value in it
+       findArrayMax();
     }   
 }
