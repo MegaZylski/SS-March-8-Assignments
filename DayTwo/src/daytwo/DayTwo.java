@@ -97,7 +97,8 @@ public class DayTwo
         
         //output the index of the biggest value
         System.out.println("\nThe biggest value in the array is at " + rowMax +
-                "," + colMax);
+                "," + colMax + "\n");
+        
         
     }
     
@@ -105,7 +106,15 @@ public class DayTwo
     //Creates various shape objects and displays their areas
     public static void shapes()
     {
+        //Create shapes
+        Rectangle r = new Rectangle(10.0,5.0);
+        Circle c = new Circle(10.0);
+        Triangle t = new Triangle(10.0, 5.0);
         
+        //Output areas
+        r.display();
+        c.display();
+        t.display();
     }
     
 //*main*****************************************************************************    
