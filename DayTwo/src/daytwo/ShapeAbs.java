@@ -2,27 +2,30 @@ package daytwo;
 
 /**
  *
- * @author Damian Zylski
- * Shape Interface
+ * @author Zylski
+ * Abstract shape class
  * 3/10/2021
- * The base for any shape classes
+ * An abstract class version of shape just for practice
  */
-
-import java.lang.Math;
-
-public interface Shape
+public abstract class ShapeAbs
 {
+    //constructor
+    public ShapeAbs()
+    {
+        
+    }
+    
     //constants
     public static final Double PI = Math.PI; //to be used by circle or cyl type shapes
     
     //This is used to calculate the area for any shape classes
-    public double calculateArea();
+    public abstract double calculateArea();
     
     //This will display the area of any shape class
-    public void display();
+    public abstract void display();
     
     //a default method for printing shape name
-    default String getName(Object o)
+    public String getName(Object o)
     {
         return o.getClass().getName();
     }
