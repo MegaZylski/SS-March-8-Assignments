@@ -25,7 +25,7 @@ public class DayThree
 //*directoryChecker*********************************************************************************
     //Lists the files and folders in a directory. Directory will be input as command line arg
     //NOTE: Had to refer to examples online as I have no idea how to list files in Java.
-    //NOTE: Having lots of trouble with this. Can't seem to display sub directories correctly
+    //NOTE: Having lots of trouble with this. Can't seem to display sub directories correctly 
     public static File directoryChecker(StringBuilder path)
     {
         //Variables
