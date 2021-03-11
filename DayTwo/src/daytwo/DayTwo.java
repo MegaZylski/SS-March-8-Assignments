@@ -21,13 +21,15 @@ public class DayTwo
         //variables
         Double sum = 0.0;
         Double num = 0.0;
-        int n = args.length;
+        int n = args.length; //Might have needed this if we used regular for loop
         DecimalFormat df = new DecimalFormat("##.00");
-        StringBuilder s = new StringBuilder(""); 
+        StringBuilder s = new StringBuilder(); //Don't need this since we are not altering strings
                 
         //loop through the args and try to add them
-        //I don't think I can use Stringbuilder with a foreach loop, so I will
-        //use String. Let me know if there's a way. Or should I use regular loop?
+        //Using a for each loop since it is easiest to use and best for memory
+        //I read the str var is just a reference to what is in the array. And we
+        //are not performing any operations on strings so we do not need StringBuilder
+        //here. We are just reading directly from the args array.
         for(String str : args) 
         {
             try
@@ -53,7 +55,7 @@ public class DayTwo
     
 //*findArrayMax***************************************************************************** 
     //Tries to find the largest point in a 2D array
-    public static void findArrayMax()
+    public static String findArrayMax()
     {
         //variables
         Integer [] [] arr = new Integer [5][2];
@@ -99,7 +101,8 @@ public class DayTwo
         System.out.println("\nThe biggest value in the array is at " + rowMax +
                 "," + colMax + "\n");
         
-        
+        //Might as well return the index as a string
+        return "" + rowMax + "," + colMax;
     }
     
 //*shapes*****************************************************************************  
@@ -126,7 +129,7 @@ public class DayTwo
        //create 2d array and find the largest value in it
        findArrayMax();
        
-       //create various shapes
+       //create various shapes, output areas
        shapes();
     }   
 }
