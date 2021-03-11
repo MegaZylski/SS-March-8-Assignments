@@ -223,7 +223,7 @@ public class DayThree
         //Append text to a file
         textAppender();
         
-        //Search for a char in a file and count it
+        //Search for a char in a file and count it 
         //See method for arg instructions
         charSearch(args);
         
