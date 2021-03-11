@@ -103,9 +103,16 @@ public class DayThree
             //try to append text to file
             writer.write("\n" + input);
             
+            System.out.println("----TEXT ADDED TO FILE----");
+            
             //close writer
             writer.close();
             
+        }
+        catch(FileNotFoundException e)
+        {
+            e.printStackTrace();
+            System.out.println("\nFile is missing or corrupt");
         }
         catch(IOException e)
         {
@@ -116,9 +123,76 @@ public class DayThree
     
 //*charSearch*********************************************************************************
     //Searches for a specific char in a file and counts it
-    public static void charSearch()
+    //PAth is supplied first in args, then the char to check
+    public static int charSearch(String args []) throws IOException
     {
+        //variables
+        Scanner file = null;
+        FileInputStream f = null;
+        String fileName = null;
+        StringBuilder text = new StringBuilder();
+        Character c = 'Z';
+        Character target = null;
+        int counter = 0;
         
+        //Try to open file and check if arguments were supplied to command line
+        try
+        {
+            fileName = args[1];
+            target = args[2].charAt(0);
+            
+            //open file if args supplied
+            f = new FileInputStream(fileName);
+            file = new Scanner(f);
+            
+            //loop through contents of file and check how many instances of target
+            //char are found
+            while(file.hasNextLine())
+            {
+                //add text from file to string
+                text.append("\n" + file.nextLine());
+            }
+            
+            //get size of text
+            int textLength = text.length();
+            
+            //loop and check for any instances of char
+            for(int i = 0; i < textLength; i++)
+            {
+                c = text.charAt(i);
+                
+                //check if char is a match
+                if(c == target)
+                {
+                    //increment counter
+                    counter++;
+                }               
+            }
+            
+            //output results
+            System.out.println("\nCharacter " + target + " was found " + counter + " times.");
+            
+            //close file
+            file.close();
+            f.close();
+        }
+        catch(ArrayIndexOutOfBoundsException e)
+        {
+            e.printStackTrace();
+            System.out.println("\nError. Missing arguments\n");
+        }
+        catch(FileNotFoundException e)
+        {
+            e.printStackTrace();
+            System.out.println("\nFile is missing or corrupt");
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+            System.out.println("\nFile is missing or corrupt");
+        }
+        
+        return counter;
     }
     
 //*main*********************************************************************************
@@ -150,6 +224,9 @@ public class DayThree
         textAppender();
         
         //Search for a char in a file and count it
+        //See method for arg instructions
+        charSearch(args);
+        
     }
     
 }
