@@ -89,7 +89,7 @@ public class DayThree
         Scanner scnr = new Scanner(System.in);
         String input = null;
         BufferedWriter writer = null;
-        String fileName = "file.dat"; //File in project folder
+        String fileName = "file.dat"; //File in project folder 
         
         //Try to open file
         try
