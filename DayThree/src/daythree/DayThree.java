@@ -24,12 +24,12 @@ public class DayThree
     
 //*directoryChecker*********************************************************************************
     //Lists the files and folders in a directory. Directory will be input as command line arg
-    //NOTE: Had to refer to examples online as I have no idea how to list files in Java.
-    //NOTE: Having lots of trouble with this. Can't seem to display sub directories correctly 
-    public static File directoryChecker(StringBuilder path)
+    //NOTE: Was having issues with this because I was making new stringbuilder in the wrong place.
+    //I had to refer to examples online to understand this since this was completely new to me. 
+    //I think I get it now. listFiles returns an array of file names. Then you loop through them.
+    public static File directoryChecker(StringBuilder path) throws IOException
     {
         //Variables
-        int i = 0;
         File dir = null;
         File dirList [] = null;
         StringBuilder newPath = null;
@@ -39,7 +39,7 @@ public class DayThree
         {     
             //open file location
             dir = new File(path.toString());
-           //Get all directories in directory
+           //Get all files in directory
            dirList= dir.listFiles();
            
            //loop through all files and display contents
@@ -48,24 +48,43 @@ public class DayThree
                //Check if path is a directory
                if(f.isDirectory())
                {
-                   //New path
+                   //Grab New path for new directory
+                   //MY CODE KEPT HAVING ERRRORS BECAUSE I WASN'T DOING NEW BELOW
                    newPath = new StringBuilder(f.toString());
-                   //Enter directory and display inner directory contents                   
+                    
+                   //Output directory name
+                   System.out.println("---" + f.getAbsolutePath() + "---");
                    
-                   System.out.println("Directory: " + f.getAbsolutePath());
+                   //Recur
+                   //Enter directory and display inner directory contents 
                    directoryChecker(newPath);
                }
                //for files
                else if(f.isFile())
                {
-                   System.out.println("File: " + f.getAbsolutePath());
-                   //return directoryChecker(newPath);
+                   //display file name
+                   System.out.println(f.getAbsolutePath());
                }
+               //base case
+               //otherwise return null and end recursion
                else
                {
                    return null;
                }
            }
+        }
+        //Excpetion handling
+        catch(IOException e)
+        {
+            e.printStackTrace();
+            System.err.println("File is Missing or corrupt");
+            throw e;
+        }
+        catch(ArrayIndexOutOfBoundsException e)
+        {
+            e.printStackTrace();
+            System.err.println("Error. Array went out of bounds");
+            throw e;
         }
         catch(InvalidPathException e)
         {
@@ -76,6 +95,7 @@ public class DayThree
         catch(NullPointerException e)
         {
             e.printStackTrace();
+            System.err.println("Error. Null Encountered");
             throw e;
         }
         return null;
