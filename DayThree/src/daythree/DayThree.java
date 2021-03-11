@@ -10,11 +10,14 @@ package daythree;
  * have the ability to search for a particular character in a file and count it.
  */
 
+import java.io.BufferedWriter;
 import java.util.Scanner;
 import java.io.File;
+import java.io.FileInputStream;
 import java.nio.file.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.FileWriter;
 
 public class DayThree
 {
@@ -45,11 +48,12 @@ public class DayThree
                //Check if path is a directory
                if(f.isDirectory())
                {
-                   System.out.println("Directory: " + f.getAbsolutePath());
                    //New path
                    newPath.append(f.toString());
                    //Enter directory and display inner directory contents                   
-                   //return directoryChecker(newPath);
+                   //directoryChecker(newPath);
+                   System.out.println("Directory: " + f.getAbsolutePath());
+                   
                }
                //for files
                else if(f.isFile())
@@ -69,14 +73,45 @@ public class DayThree
             System.err.println("Directory not found!");
             throw e;
         }
+        catch(NullPointerException e)
+        {
+            e.printStackTrace();
+            throw e;
+        }
         return null;
     }
     
 //*textAppender*********************************************************************************
     //Appends text to a file
-    public static void textAppender()
+    public static void textAppender() throws IOException
     {
+        //variables
+        Scanner scnr = new Scanner(System.in);
+        String input = null;
+        BufferedWriter writer = null;
+        String fileName = "file.dat"; //File in project folder
         
+        //Try to open file
+        try
+        {
+            writer = new BufferedWriter(new FileWriter(fileName,true));
+            
+            //Prompt user for input
+            System.out.println("\nPlease enter the new line of text you would like to add to file: ");
+            input = scnr.nextLine();
+            
+            //try to append text to file
+            writer.write("\n" + input);
+            
+            //close writer
+            writer.close();
+            
+        }
+        catch(IOException e)
+        {
+            System.out.println("File is missing or corrupt!");
+            e.printStackTrace();
+        }
     }
     
 //*charSearch*********************************************************************************
@@ -87,7 +122,7 @@ public class DayThree
     }
     
 //*main*********************************************************************************
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
         //check what is in a directory and it's subdirectories
         try //Check if there is any input, since this is coming from Command Line
@@ -112,6 +147,7 @@ public class DayThree
         }
         
         //Append text to a file
+        textAppender();
         
         //Search for a char in a file and count it
     }
