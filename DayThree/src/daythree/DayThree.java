@@ -32,7 +32,7 @@ public class DayThree
         int i = 0;
         File dir = null;
         File dirList [] = null;
-        StringBuilder newPath = new StringBuilder();
+        StringBuilder newPath = null;
         
         //Try to open directory
         try
@@ -49,11 +49,11 @@ public class DayThree
                if(f.isDirectory())
                {
                    //New path
-                   newPath.append(f.toString());
+                   newPath = new StringBuilder(f.toString());
                    //Enter directory and display inner directory contents                   
-                   //directoryChecker(newPath);
-                   System.out.println("Directory: " + f.getAbsolutePath());
                    
+                   System.out.println("Directory: " + f.getAbsolutePath());
+                   directoryChecker(newPath);
                }
                //for files
                else if(f.isFile())
