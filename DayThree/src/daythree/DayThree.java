@@ -213,12 +213,6 @@ public class DayThree
             e.printStackTrace();
             System.out.println("Error. No directory provided\n");
         }
-        catch(InvalidPathException e)
-        {
-            e.printStackTrace();
-            System.err.println("Directory not found!");
-            throw e;
-        }
         
         //Append text to a file
         textAppender();
