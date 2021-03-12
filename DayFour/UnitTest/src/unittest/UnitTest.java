@@ -12,7 +12,11 @@ public class UnitTest
     public static void main(String[] args)
     {
         //Create new line object
-        Line l = new Line(5.0, 5.0, 5.0, 5.0);
+        Line l = new Line(5.0, 10.0, 7.0, 5.0);
+        Line l2 = new Line(6.0, 10.0, 8.0, 5.0);
+        System.out.println("Slope: " + l.getSlope());
+        System.out.println("Distance: " + l.getDistance());
+        System.out.println("Parallel?: " + l.parallelTo(l2));
     }
     
 }

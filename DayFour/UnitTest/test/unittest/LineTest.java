@@ -47,13 +47,11 @@ public class LineTest
     @Test
     public void testGetSlope()
     {
-        System.out.println("getSlope");
-        Line instance = null;
-        double expResult = 0.0;
+        System.out.println("getSlope Test with input 5, 10, 7, 5");
+        Line instance = new Line(5.0,10.0,7.0,5.0);
+        double expResult = -2.5;
         double result = instance.getSlope();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result, 0.0);        
     }
 
     /**
@@ -62,13 +60,12 @@ public class LineTest
     @Test
     public void testGetDistance()
     {
-        System.out.println("getDistance");
-        Line instance = null;
-        double expResult = 0.0;
+        System.out.println("getDistance Test with input 5, 10, 7, 5");
+        Line instance = new Line(5.0,10.0,7.0,5.0);
+        double expResult = 5.385164807134504;
         double result = instance.getDistance();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -77,14 +74,13 @@ public class LineTest
     @Test
     public void testParallelTo()
     {
-        System.out.println("parallelTo");
-        Line l = null;
-        Line instance = null;
-        boolean expResult = false;
+        System.out.println("parallelTo Test with input 5, 10, 7, 5");
+        System.out.println("Expecting true for 6,10,8,5 comparison");
+        Line l = new Line(6.0, 10.0, 8.0, 5.0);
+        Line instance = new Line(5.0,10.0,7.0,5.0);
+        boolean expResult = true;
         boolean result = instance.parallelTo(l);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
