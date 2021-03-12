@@ -9,13 +9,22 @@ package singletondouble;
  */
 public class SingletonDouble
 {
+    
+    //Check if same instance
+    public static boolean sameInstance(Singleton s1, Singleton s2)
+    {
+        return s1.equals(s2);
+    }
+    
     public static void main(String[] args)
     {
         Singleton s1 = Singleton.getInstance();
         
         Singleton s2 = Singleton.getInstance();
         
-
+        System.out.println(sameInstance(s1,s2));
+        
+        System.out.println(s1.getString());
     }
     
 }
