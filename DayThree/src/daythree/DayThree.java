@@ -1,7 +1,7 @@
 package daythree;
 /*
  * Programmer: Damian Zylski
- * Project:    TrianglesFromNotes
+ * Project:    DayThree
  * Date:       03/10/2021
  * System:     Windows 7 Enterprise - Netbeans 12
  * 

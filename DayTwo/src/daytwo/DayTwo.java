@@ -1,7 +1,7 @@
 package daytwo;
 /*
  * Programmer: Damian Zylski
- * Project:    TrianglesFromNotes
+ * Project:    DayTwo
  * Date:       03/10/2021
  * System:     Windows 7 Enterprise - Netbeans 12
  * 
