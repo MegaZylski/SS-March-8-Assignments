@@ -28,30 +28,7 @@ public class ProduceConsume
             @Override
             public void run()
             {
-                try
-                {
-                    //check if buffer isn't full
-                    if(s.size() < 8)
-                    {
-                        synchronized(s)
-                        {
-                            s.push(7);
-                            System.out.println("Producer is producing");
-                            //sleep
-                            Thread.sleep(1);
-                        };
-                    }
-                    else
-                    {
-                        //producer is sleeping
-                        Thread.sleep(50);
-                        System.out.println("Producer is sleeping");
-                    }
-                }
-                catch(InterruptedException e)
-                {
-                    e.printStackTrace();
-                }
+                System.out.println("Producer is Alive");
             }
         };
         //Consumer pops ints
@@ -60,40 +37,69 @@ public class ProduceConsume
             @Override
             public void run()
             {
-                try
+                System.out.println("Consumer is Alive");
+            }
+        };
+        
+        int i = 0;
+        
+        //Create new threads
+        new Thread(consumer).start();
+        new Thread(producer).start();
+        
+        //loop and start the threads
+        while(i < 1000)
+        {
+            
+            
+            try
                 {
-                    //check if buffer has anything to consume
-                    if(!s.empty())
+                    //check if buffer isn't full
+                    if(s.size() < 8)
                     {
                         synchronized(s)
                         {
-                            s.pop();
-                            System.out.println("Consumer is consuming");
+
+                            s.push(7);
+                            System.out.println("Producer is producing");
                             //sleep
                             Thread.sleep(1);
                         };
                     }
                     else
                     {
-                        //consumer is sleeping
-                        System.out.println("Consumer is sleeping");
-                        Thread.sleep(50);
+                        //producer is sleeping                       
+                        producer.wait(30);
+                        producer.notify();
+                        System.out.println("Producer is waiting");
+                    }
+                    
+                    //check if buffer isn't empty
+                    if(!s.empty() && s.size() > 0)
+                    {
+                        synchronized(s)
+                        {
+
+                            
+                            s.pop();
+                            System.out.println("Consumer is consuming");
+                            //sleep
+                            Thread.sleep(1);
+                            
+                        };
+                    }
+                    else
+                    {
+                        //consumer is waiting
+                        consumer.wait(50);
+                        producer.notify();
+                        System.out.println("Consumer is waiting");
                     }
                 }
-                catch(InterruptedException e)
+                catch(InterruptedException | IllegalMonitorStateException e)
                 {
                     e.printStackTrace();
                 }
-            }
-        };
-        
-        int i = 0;
-        
-        //loop and start the threads
-        while(i < 1000)
-        {
-            new Thread(consumer).start();
-            new Thread(producer).start();
             
 
             

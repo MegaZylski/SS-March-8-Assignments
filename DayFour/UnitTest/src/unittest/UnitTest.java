@@ -11,7 +11,8 @@ public class UnitTest
 {
     public static void main(String[] args)
     {
-        // TODO code application logic here
+        //Create new line object
+        Line l = new Line(5.0, 5.0, 5.0, 5.0);
     }
     
 }
