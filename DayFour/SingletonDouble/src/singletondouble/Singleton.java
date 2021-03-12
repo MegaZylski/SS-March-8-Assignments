@@ -25,6 +25,7 @@ public class Singleton
     //Method to get instance
     public static Singleton getInstance()
     {
+        //don't enter synchronized area if instance exists. would be bad for performance
         if(instance == null)
         {
             //synchronized (instance)
