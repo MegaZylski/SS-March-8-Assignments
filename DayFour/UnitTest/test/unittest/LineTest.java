@@ -42,6 +42,8 @@ public class LineTest
     public void tearDown()
     {
     }
+    
+    //TO DO: Need to write 2 more test cases for each method
 
     /**
      * Test of getSlope method, of class Line.
