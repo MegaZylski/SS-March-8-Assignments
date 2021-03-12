@@ -38,8 +38,14 @@ public class ProduceConsume
                             s.push(7);
                             System.out.println("Producer is producing");
                             //sleep
-                            Thread.sleep(10);
+                            Thread.sleep(1);
                         };
+                    }
+                    else
+                    {
+                        //producer is sleeping
+                        Thread.sleep(50);
+                        System.out.println("Producer is sleeping");
                     }
                 }
                 catch(InterruptedException e)
@@ -64,8 +70,14 @@ public class ProduceConsume
                             s.pop();
                             System.out.println("Consumer is consuming");
                             //sleep
-                            Thread.sleep(10);
+                            Thread.sleep(1);
                         };
+                    }
+                    else
+                    {
+                        //consumer is sleeping
+                        System.out.println("Consumer is sleeping");
+                        Thread.sleep(50);
                     }
                 }
                 catch(InterruptedException e)
@@ -75,14 +87,18 @@ public class ProduceConsume
             }
         };
         
-        //start the threads
-        new Thread(consumer).start();
-        producer.start();
+        int i = 0;
         
-        
+        //loop and start the threads
+        while(i < 1000)
+        {
+            new Thread(consumer).start();
+            new Thread(producer).start();
+            
 
-        
-        System.out.println(s.empty());
+            
+            i++;
+        }
     }
 //*main***************************************************************************
     public static void main(String[] args)
