@@ -9,13 +9,13 @@ package singletondouble;
  */
 public class SingletonDouble
 {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args)
     {
-        // TODO code application logic here
+        Singleton s1 = Singleton.getInstance();
+        
+        Singleton s2 = Singleton.getInstance();
+        
+
     }
     
 }
