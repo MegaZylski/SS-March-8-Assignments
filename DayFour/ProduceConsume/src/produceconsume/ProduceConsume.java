@@ -10,16 +10,23 @@ package produceconsume;
  * share a resource such as an array and wait to use the resource
  */
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 
 public class ProduceConsume
 {
+    
+    //Create a new Queue that acts as the buffer
+    static Queue <Integer> q = new LinkedList <Integer>();
+    
 //*handleThreads***************************************************************************
     //handles the producer consumer problem
     public static void handleThreads()
     {
-        //Create a new stack that acts as the buffer
-        Stack s = new Stack();
+        
         
         //create threads
         //Producer pushes ints
@@ -28,9 +35,51 @@ public class ProduceConsume
             @Override
             public void run()
             {
+                //Announce that thread is alive
                 System.out.println("Producer is Alive");
+                
+                //make counter
+                int i = 0;
+                
+                //Create Integer to add
+                Integer num = 7;
+                
+                //loop and perform operations on Queue, add ints to queue
+                while(i < 1000)
+                {
+                    try
+                    {
+                        //Check if Queue isn't full
+                        if(q.size() <= 7)
+                        {
+                            //Obtain lock for q and add elements to q
+                            synchronized(q)
+                            {
+                                System.out.println("Producer adding " + num + " to Queue");
+                                q.offer(num);
+                                //notify that q has an element added in case consumer is waiting
+                                notify();
+                            }
+
+                        }
+                        //else if q is full
+                        else
+                        {
+                            //wait until q isn't full
+                            wait();
+                            System.out.println("Producer is waiting");
+                        }
+                    }
+                    catch(InterruptedException | IllegalStateException | IllegalMonitorStateException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    
+                    i++;
+                }
             }
         };
+        
         //Consumer pops ints
         Thread consumer = new Thread()
         {
@@ -38,73 +87,51 @@ public class ProduceConsume
             public void run()
             {
                 System.out.println("Consumer is Alive");
+                
+                int i = 0;
+                
+                while(i < 1000)
+                {
+                    try
+                    {
+                        //Check if Queue isn't empty
+                        if(!q.isEmpty())
+                        {
+                            //Obtain lock for q and remove elements from q
+                            synchronized(q)
+                            {
+                                System.out.println("Consumer removing " + q.poll() + " from Queue");
+                                //notify that q has an element removed in case producer is waiting
+                                notify();
+                            }
+
+                        }
+                        //else if q is full
+                        else
+                        {
+                            //wait until q isn't full
+                            wait();
+                            System.out.println("Consumer is waiting");
+                        }
+                    }
+                    catch(InterruptedException | IllegalStateException | IllegalMonitorStateException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    
+                    i++;
+                }
             }
         };
         
-        int i = 0;
         
-        //Create new threads
+        //Start new threads
         new Thread(consumer).start();
         new Thread(producer).start();
         
-        //loop and start the threads
-        while(i < 1000)
-        {
-            
-            
-            try
-                {
-                    //check if buffer isn't full
-                    if(s.size() < 8)
-                    {
-                        synchronized(s)
-                        {
 
-                            s.push(7);
-                            System.out.println("Producer is producing");
-                            //sleep
-                            Thread.sleep(1);
-                        };
-                    }
-                    else
-                    {
-                        //producer is sleeping                       
-                        producer.wait(30);
-                        producer.notify();
-                        System.out.println("Producer is waiting");
-                    }
-                    
-                    //check if buffer isn't empty
-                    if(!s.empty() && s.size() > 0)
-                    {
-                        synchronized(s)
-                        {
-
-                            
-                            s.pop();
-                            System.out.println("Consumer is consuming");
-                            //sleep
-                            Thread.sleep(1);
-                            
-                        };
-                    }
-                    else
-                    {
-                        //consumer is waiting
-                        consumer.wait(50);
-                        producer.notify();
-                        System.out.println("Consumer is waiting");
-                    }
-                }
-                catch(InterruptedException | IllegalMonitorStateException e)
-                {
-                    e.printStackTrace();
-                }
-            
-
-            
-            i++;
-        }
+        
+        
     }
 //*main***************************************************************************
     public static void main(String[] args)
