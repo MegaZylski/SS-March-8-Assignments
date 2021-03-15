@@ -23,6 +23,7 @@ public class Lambdas
         //Boolean
         boolean isSorted = false; //used to check if array was sorted
         
+        try{
         //Create string array
         String strings [] = {"quack","taco","extra","one","Astronomy","enemy","bend","eat"};
         
@@ -62,6 +63,11 @@ public class Lambdas
         System.out.print("Sort by strings starting with e: ");
         for(String s : strings){System.out.print(s + " ");}
         System.out.println("");
+        }
+        catch(NullPointerException | ArrayIndexOutOfBoundsException | NumberFormatException e)
+        {
+            e.printStackTrace();
+        }
     }
     
     //*oddEvenList************************************************************************
@@ -69,21 +75,25 @@ public class Lambdas
     //preceding an odd num
     public static String oddEvenList(List <Integer> nums)
     {
-        
-        
-        Integer i = 0;
-        
+        try{
         //use lambda to print a comma seperated string of ints preceded by e or o
         String s = nums.stream().map((num) -> (OddEvens.isEvenorOdd(num))).collect(Collectors.joining(","));
         System.out.println("\n" + s);
         
         return s;
+        }
+        catch(NullPointerException | IllegalStateException | NumberFormatException e)
+        {
+            e.printStackTrace();
+        }
+        return "";
     }
 //*aList************************************************************************
     //Takes a list of strings and returns the ones that start with letter a and 
     //are length 3.
     public static List <String> aList(List <String> strings)
     {
+        try{
         //filter out the correct strings
         strings = strings.stream() //using stream
                 .filter((string) -> (string.charAt(0) == 'a')) //filter once based on first letter being a
@@ -95,6 +105,12 @@ public class Lambdas
         //print out list contents
         for(String s : strings){System.out.println(s);};
         
+        return strings;
+        }
+        catch(NullPointerException | IllegalStateException e)
+        {
+            e.printStackTrace();
+        }
         return strings;
     }
     

@@ -1,5 +1,6 @@
 package datetime;
 
+import java.time.DateTimeException;
 import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.TemporalField;
@@ -28,6 +30,7 @@ public class DateTime
     //practices with date time functions
     public static void dateTime()
     {
+        try{
         //1.)
         //Which class would you use to store your birthday in years, months, days, seconds, and nanoseconds
         //Use LocalDateTime
@@ -88,7 +91,11 @@ public class DateTime
             friday13 = false;
         }
         System.out.println(friday13);
-        
+        }
+        catch(NumberFormatException | DateTimeException e)
+        {
+            e.printStackTrace();
+        }
         
 
         

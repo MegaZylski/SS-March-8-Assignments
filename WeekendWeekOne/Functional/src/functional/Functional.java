@@ -1,0 +1,74 @@
+package functional;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/*
+ * Programmer: Damian Zylski
+ * Project:    Functional
+ * Date:       03/14/2021
+ * System:     Windows 7 Enterprise - Netbeans 12
+ * 
+ * Purpose:    To create functional methods to perform operations on numbers
+ * such as returning right most digits and doubling items
+ */
+public class Functional
+{
+//*rightDigit************************************************************************
+    //returns the right most digit of each num in list
+    public static List rightDigit(List nums)
+    {
+        return (List) nums.stream().map((n) -> ((int)n % 10)).collect(Collectors.toList());
+    }
+    
+//*doubling************************************************************************
+    //doubles each num in list
+    public static List doubling(List nums)
+    {
+        return (List) nums.stream().map((n) -> ((int)n * 2)).collect(Collectors.toList());
+    }
+    
+//*NoX************************************************************************
+    //removes all x in list
+    public static List NoX(List strings)
+    {
+        return (List) strings.stream().map((s) -> {StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < s.length(); i++){if(s.charAt(i) != 'x'){sb.append(s.charAt(i));}
+        }
+        return sb.toString();}).collect(Collectors.toList());
+    }
+    
+    public static void main(String[] args)
+    {
+        //create list and add nums
+        List <Integer> nums1 = new ArrayList <Integer> ();
+        nums1.add(1);
+        nums1.add(22);
+        nums1.add(93);
+        
+        //Return new list with only right most digits
+        nums1 = rightDigit(nums1);
+        
+        //output
+        for(Integer i : nums1){System.out.println(i);}
+        
+        //clear list, add new nums
+        nums1.clear();
+        nums1.add(6);
+        nums1.add(8);
+        nums1.add(6);
+        nums1.add(8);
+        nums1.add(-1);
+        
+        //double digits
+        nums1 = doubling(nums1);
+        
+        //output
+        System.out.println("");
+        for(Integer i : nums1){System.out.println(i);}
+        
+
+    }
+    
+}
