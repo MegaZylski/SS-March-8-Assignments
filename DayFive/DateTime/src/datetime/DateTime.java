@@ -28,8 +28,10 @@ public class DateTime
 {
 //*dateTime************************************************************************
     //practices with date time functions
-    public static void dateTime()
+    public static boolean dateTime()
     {
+        boolean testsPassed = true;
+        
         try{
         //1.)
         //Which class would you use to store your birthday in years, months, days, seconds, and nanoseconds
@@ -94,14 +96,12 @@ public class DateTime
         }
         catch(NumberFormatException | DateTimeException e)
         {
+            testsPassed = false;
             e.printStackTrace();
         }
         
 
-        
-        
-        
-        
+        return testsPassed;      
     }
 //*main************************************************************************    
     public static void main(String[] args)

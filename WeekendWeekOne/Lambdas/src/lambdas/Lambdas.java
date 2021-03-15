@@ -69,7 +69,7 @@ public class Lambdas
     
 //*performOperation************************************************************************
     //Performs operations based on input. Not sure what input is. Read from input file maybe?
-    public static void performOperation() throws IOException
+    public static boolean performOperation() throws IOException
     {
         FileInputStream f = null;
         Scanner file = null;
@@ -77,6 +77,7 @@ public class Lambdas
         int option = 0;
         Integer num = 0;
         int i = 0;
+        boolean passedTest = true;
         
         //try to open file
         try
@@ -118,23 +119,29 @@ public class Lambdas
             file.close();
             f.close();
             
+            return passedTest;
+            
         }
-        catch(InputMismatchException e)
+        catch(InputMismatchException | NumberFormatException e)
         {
             e.printStackTrace();
             System.out.println("Bad Input!");
+            passedTest = false;
         }
         catch(FileNotFoundException | NoSuchElementException e)
         {
             e.printStackTrace();
             System.out.println("File is missing or corrupt");
+            passedTest = false;
         }
         catch(IOException e)
         {
             e.printStackTrace();
             System.out.println("File is missing or corrupt");
+            passedTest = false;
         }
         
+        return passedTest;
     }
     
 //*main************************************************************************

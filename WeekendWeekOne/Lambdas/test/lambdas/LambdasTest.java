@@ -50,13 +50,12 @@ public class LambdasTest
     public void testIsOdd()
     {
         System.out.println("isOdd");
-        Integer i = null;
-        String expResult = "";
+        Integer i = 666;
+        String expResult = "EVEN";
         String result = Lambdas.isOdd(i);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
+
 
     /**
      * Test of isPrime method, of class Lambdas.
@@ -65,12 +64,10 @@ public class LambdasTest
     public void testIsPrime()
     {
         System.out.println("isPrime");
-        Integer num = null;
-        String expResult = "";
+        Integer num = 2;
+        String expResult = "PRIME";
         String result = Lambdas.isPrime(num);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -80,12 +77,10 @@ public class LambdasTest
     public void testIsPalindrome()
     {
         System.out.println("isPalindrome");
-        Integer num = null;
-        String expResult = "";
+        Integer num = 4554;
+        String expResult = "PALINDROME";
         String result = Lambdas.isPalindrome(num);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -95,9 +90,9 @@ public class LambdasTest
     public void testPerformOperation() throws Exception
     {
         System.out.println("performOperation");
-        Lambdas.performOperation();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean expResult = true;
+        boolean result = Lambdas.performOperation();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -109,8 +104,6 @@ public class LambdasTest
         System.out.println("main");
         String[] args = null;
         Lambdas.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

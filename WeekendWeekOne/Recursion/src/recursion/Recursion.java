@@ -15,7 +15,7 @@ public class Recursion
 //*groupSumClump*****************************************************************************
     //The recursive solution to finding if a list of nums can equal a target num based on the 
     //above mentioned conditions
-    public static boolean groupSumClump(int index, int arr [], int target)
+    public static boolean groupSumClump(int index, int arr [], int target, int sum)
     {
         
         return false;

@@ -18,15 +18,15 @@ public class Lambdas
 {
 //*lambdaStrings************************************************************************
     //Sort lambda strings by various methods
-    public static void lambdaStrings()
+    public static String [] lambdaStrings()
     {
         //Boolean
         boolean isSorted = false; //used to check if array was sorted
         
-        try{
         //Create string array
         String strings [] = {"quack","taco","extra","one","Astronomy","enemy","bend","eat"};
         
+        try{  
         //Sort Strings based on length
         Arrays.sort(strings, (s1,s2) -> (s1.length() - s2.length() ));
         System.out.print("Sort by length: ");
@@ -68,6 +68,7 @@ public class Lambdas
         {
             e.printStackTrace();
         }
+        return strings;
     }
     
     //*oddEvenList************************************************************************
@@ -124,21 +125,11 @@ public class Lambdas
         //add some nums
         nums.add(666);
         nums.add(777);
-        nums.add(888);
-        nums.add(999);
-        nums.add(111);
-        nums.add(222);
-        nums.add(444);
         
         //create list of strings
         List <String> strings = new ArrayList <String>();
         
         //add some strings
-        strings.add("bird");
-        strings.add("word");
-        strings.add("ant");
-        strings.add("animal");
-        strings.add("canoe");
         strings.add("dictionary");
         strings.add("act");
         strings.add("a");

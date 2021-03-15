@@ -13,16 +13,16 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.InputMismatchException;
 
-
-public class Singleton //removed static for now
+ public class Singleton //removed static for now
 {
 
 	private static Connection conn = null;
 	
-	private static Singleton instance = null;
+	volatile private static Singleton instance = null; //added volatile
 	
-	public static Singleton getInstance() 
+	 public static Singleton getInstance() 
         {
             //This getInstance method had no locking. Added locking to make it a real Singleton
             if(instance == null)
@@ -39,8 +39,9 @@ public class Singleton //removed static for now
             return instance;
 	}
 	
-	public static void databaseQuery(BigDecimal input) 
+	public static boolean databaseQuery(BigDecimal input) 
         {
+            boolean connected = true;
             try
             {
                 conn = DriverManager.getConnection("url of database"); //Added try catch for sql exception
@@ -52,10 +53,12 @@ public class Singleton //removed static for now
                     x = BigDecimal.valueOf(rs.getInt(1)).multiply(input).intValueExact(); //Had to make sure this can convert to int.                
                 }
             }
-            catch(SQLException e)
+            catch(SQLException | InputMismatchException | NumberFormatException e)
             {
                 e.printStackTrace();
+                connected = false;
             }
+            return connected;
 	}
 }
 
