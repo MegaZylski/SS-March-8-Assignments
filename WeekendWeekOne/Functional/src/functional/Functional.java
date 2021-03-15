@@ -31,13 +31,12 @@ public class Functional
     
 //*NoX************************************************************************
     //removes all x in list
-    public static List NoX(List strings)
+    public static List noX(List strings)
     {
-        return (List) strings.stream().map((s) -> {StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < s.length(); i++){if(s.charAt(i) != 'x'){sb.append(s.charAt(i));}
-        }
-        return sb.toString();}).collect(Collectors.toList());
+        return (List) strings.stream().map((string) -> (FunctionalInt.removeX((String)string))).collect(Collectors.toList());
     }
+    
+    
     
     public static void main(String[] args)
     {
@@ -67,6 +66,22 @@ public class Functional
         //output
         System.out.println("");
         for(Integer i : nums1){System.out.println(i);}
+        
+        //Make new string list
+        List <String> strings = new ArrayList <String> ();
+        strings.add("xxax");
+        strings.add("xbxbx");
+        strings.add("xxcx");
+        strings.add("");
+        
+        //remove x
+        strings = noX(strings);
+        
+        //output
+        System.out.println("");
+        for(String s : strings){System.out.println(s);}
+        
+        
         
 
     }
