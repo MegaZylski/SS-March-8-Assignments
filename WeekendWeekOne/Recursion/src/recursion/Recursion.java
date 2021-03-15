@@ -22,6 +22,8 @@ public class Recursion
     //I will work on trying to get the target first, then on thr adjacent condition
     public static boolean groupSumClump(int index, int arr [], int target) //MAybe we can subtract from target?
     {
+        System.out.println("Target:" + target);
+        
         //variables
         int sum = 0;
         int indexIncrease = 0;
@@ -48,6 +50,7 @@ public class Recursion
                         index = index + 1;
                         System.out.println("sum:" + sum);
                         System.out.println("ArrValue:" + arr[index]);
+                        System.out.println("check: " + adjCheck);
                         break;
                     }
                 }
@@ -90,7 +93,7 @@ public class Recursion
         //run recursive solution
         try
         {
-        System.out.println(groupSumClump(0, arr, 10));
+        System.out.println(groupSumClump(0, arr, 14));
         }
         catch(IllegalArgumentException e)
         {
