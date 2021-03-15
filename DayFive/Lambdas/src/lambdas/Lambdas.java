@@ -1,7 +1,10 @@
 package lambdas;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /*
  * Programmer: Damian Zylski
@@ -17,6 +20,9 @@ public class Lambdas
     //Sort lambda strings by various methods
     public static void lambdaStrings()
     {
+        //Boolean
+        boolean isSorted = false; //used to check if array was sorted
+        
         //Create string array
         String strings [] = {"quack","taco","extra","one","Astronomy","enemy","bend","eat"};
         
@@ -50,13 +56,89 @@ public class Lambdas
         System.out.print("Sort by strings starting with e: ");
         for(String s : strings){System.out.print(s + " ");}
         System.out.println("");
+        //sort by strings that start with e first, with a static method
+        Arrays.sort(strings, (s1,s2) -> (s2.length() - s1.length() )); //sort by length first to mix it up
+        Arrays.sort(strings, (s1,s2) -> (SortStrings.startWithE(s1, s2)));
+        System.out.print("Sort by strings starting with e: ");
+        for(String s : strings){System.out.print(s + " ");}
+        System.out.println("");
+    }
+    
+    //*oddEvenList************************************************************************
+    //Takes a list of ints and returns a string with an e preceding even num, and an o
+    //preceding an odd num
+    public static String oddEvenList(List <Integer> nums)
+    {
+        
+        
+        Integer i = 0;
+        
+        //use lambda to print a comma seperated string of ints preceded by e or o
+        String s = nums.stream().map((num) -> (OddEvens.isEvenorOdd(num))).collect(Collectors.joining(","));
+        System.out.println("\n" + s);
+        
+        return s;
+    }
+//*aList************************************************************************
+    //Takes a list of strings and returns the ones that start with letter a and 
+    //are length 3.
+    public static List <String> aList(List <String> strings)
+    {
+        //filter out the correct strings
+        strings = strings.stream() //using stream
+                .filter((string) -> (string.charAt(0) == 'a')) //filter once based on first letter being a
+                .filter((string) -> (string.length() == 3)) //filter twice based on length being 3
+                .collect(Collectors.toList()); //return a list
+        
+        System.out.println("");
+        
+        //print out list contents
+        for(String s : strings){System.out.println(s);};
+        
+        return strings;
     }
     
 //*main************************************************************************
     public static void main(String[] args)
     {
+        
+        //Create a list of nums
+        List <Integer> nums = new ArrayList <Integer>();
+        
+        //add some nums
+        nums.add(666);
+        nums.add(777);
+        nums.add(888);
+        nums.add(999);
+        nums.add(111);
+        nums.add(222);
+        nums.add(444);
+        
+        //create list of strings
+        List <String> strings = new ArrayList <String>();
+        
+        //add some strings
+        strings.add("bird");
+        strings.add("word");
+        strings.add("ant");
+        strings.add("animal");
+        strings.add("canoe");
+        strings.add("dictionary");
+        strings.add("act");
+        strings.add("a");
+        strings.add("and");
+        strings.add("any");
+        strings.add("anyways");
+        
         //Perform lambda strings operations
         lambdaStrings();
+        
+        //Create string with comma seperated nums
+        oddEvenList(nums);
+        
+        //create a list of filtered strings
+        aList(strings);
+        
     }
     
 }
