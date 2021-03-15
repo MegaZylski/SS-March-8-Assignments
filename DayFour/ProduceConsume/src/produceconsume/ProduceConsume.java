@@ -10,17 +10,14 @@ package produceconsume;
  * share a resource such as an array and wait to use the resource
  */
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
-import java.util.Stack;
 
 public class ProduceConsume
 {
     
     //Create a new Queue that acts as the buffer
-    static Queue <Integer> q = new LinkedList <Integer>();
+    volatile static Queue <Integer> q = new LinkedList <Integer>();
     
 //*handleThreads***************************************************************************
     //handles the producer consumer problem
@@ -49,26 +46,32 @@ public class ProduceConsume
                 {
                     try
                     {
+                        synchronized(Thread.currentThread())
+                            {
                         //Check if Queue isn't full
                         if(q.size() <= 7)
                         {
                             //Obtain lock for q and add elements to q
-                            synchronized(q)
-                            {
+                            
                                 System.out.println("Producer adding " + num + " to Queue");
                                 q.offer(num);
                                 //notify that q has an element added in case consumer is waiting
-                                notify();
-                            }
-
+                                //NOTE: This keeps throwing IllegalMonitorStateException with wait
+                                //Thread.currentThread().notifyAll(); 
+                                //notify();
+                                Thread.currentThread().notifyAll();
+                            
                         }
                         //else if q is full
                         else
                         {
                             //wait until q isn't full
-                            wait();
+                            //Thread.sleep(30);
+                            Thread.currentThread().wait(1);
+                            //wait();
                             System.out.println("Producer is waiting");
                         }
+                            }
                     }
                     catch(InterruptedException | IllegalStateException | IllegalMonitorStateException e)
                     {
@@ -94,25 +97,31 @@ public class ProduceConsume
                 {
                     try
                     {
+                        //Obtain lock for q and remove elements from q
+                            synchronized(Thread.currentThread())
+                            {
                         //Check if Queue isn't empty
                         if(!q.isEmpty())
                         {
-                            //Obtain lock for q and remove elements from q
-                            synchronized(q)
-                            {
+                            
                                 System.out.println("Consumer removing " + q.poll() + " from Queue");
                                 //notify that q has an element removed in case producer is waiting
-                                notify();
-                            }
+                                //NOTE: This keeps throwing IllegalMonitorStateException with wait
+                                Thread.currentThread().notifyAll();
+                                //notify();
+                            
 
                         }
-                        //else if q is full
+                        //else if q is empty
                         else
                         {
-                            //wait until q isn't full
-                            wait();
+                            //wait until q isn't empty
+                            //Thread.sleep(30);
+                            Thread.currentThread().wait(1);
+                            //wait();
                             System.out.println("Consumer is waiting");
                         }
+                            }
                     }
                     catch(InterruptedException | IllegalStateException | IllegalMonitorStateException e)
                     {
@@ -137,7 +146,14 @@ public class ProduceConsume
     public static void main(String[] args)
     {
         //run handleThreads
+        try
+        {
         handleThreads();
+        }
+        catch(RuntimeException e)
+        {
+            
+        }
     }
     
 }
