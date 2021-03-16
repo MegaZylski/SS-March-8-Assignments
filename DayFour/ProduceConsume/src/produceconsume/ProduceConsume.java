@@ -59,16 +59,15 @@ public class ProduceConsume
                                 //NOTE: This keeps throwing IllegalMonitorStateException with wait
                                 //Thread.currentThread().notifyAll(); 
                                 //notify();
-                                Thread.currentThread().notifyAll();
+                                //Thread.currentThread().notifyAll();
+                                q.notify();
                             
                         }
                         //else if q is full
                         else
                         {
                             //wait until q isn't full
-                            //Thread.sleep(30);
-                            Thread.currentThread().wait(1);
-                            //wait();
+                            q.wait(5);
                             System.out.println("Producer is waiting");
                         }
                             }
@@ -107,8 +106,9 @@ public class ProduceConsume
                                 System.out.println("Consumer removing " + q.poll() + " from Queue");
                                 //notify that q has an element removed in case producer is waiting
                                 //NOTE: This keeps throwing IllegalMonitorStateException with wait
-                                Thread.currentThread().notifyAll();
+                                //Thread.currentThread().notifyAll();
                                 //notify();
+                                q.notify();
                             
 
                         }
@@ -117,7 +117,8 @@ public class ProduceConsume
                         {
                             //wait until q isn't empty
                             //Thread.sleep(30);
-                            Thread.currentThread().wait(1);
+                            //Thread.currentThread().wait(1);
+                            q.wait(5);
                             //wait();
                             System.out.println("Consumer is waiting");
                         }
@@ -137,7 +138,8 @@ public class ProduceConsume
         //Start new threads
         new Thread(consumer).start();
         new Thread(producer).start();
-        
+
+
 
         
         
