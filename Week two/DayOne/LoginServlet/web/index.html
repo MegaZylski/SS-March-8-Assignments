@@ -17,6 +17,23 @@ success or fail based on whether the login info is correct. Uses a servlet
     </head>
     <body>
         <h1>Welcome!</h1>
-        <div><p>Please enter your username and password and hit submit to log in: </p></div>
+        <div>
+            <p>
+                SERVER LOGIN: 
+            </p>
+            <form method="post" >
+                <fieldset>
+                    <legend>Please enter your username and password to login</legend>
+                    <br>
+                    <label for="Name" >Name: </label><br>
+                    <input type="text" name="Name" size="25" required="required" tabindex="1">
+                    <br>
+                    <label for="Password" >Password: </label><br>
+                    <input type="text" name="Password" size="25" required="required" tabindex="2">
+                    <br>
+                    <br>
+                </fieldset>
+            </form>
+        </div>
     </body>
 </html>

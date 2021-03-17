@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package loginservlet;
 
 import java.io.IOException;
@@ -12,10 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Zylski
+/*
+ * Programmer: Damian Zylski
+ * Project:    LoginServlet
+ * Date:       03/17/2021
+ * System:     Windows 7 Enterprise - Netbeans 12
+ * 
+ * Purpose:    To handle login requests for the HTTP server
  */
+
 public class LoginServlet extends HttpServlet
 {
 
