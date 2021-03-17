@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * Purpose:    To handle login requests for the HTTP server
  */
 
+
 public class LoginServlet extends HttpServlet
 {
 
@@ -28,13 +29,41 @@ public class LoginServlet extends HttpServlet
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    //hard coded private login and password info, I'm sure there's a way to pull this from
+    //the server but don't know how yet
+    private final String name = "Zylski";
+    private final String password = "wordpass111";
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        //Variables 
+        boolean correct = false;
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
         {
-            /* TODO output your page here. You may use following sample code. */
+            //Hard coded login info
+            
+            //handle input and check if login success
+            String inputName = request.getParameter("Name");
+            String inputPassword = request.getParameter("Password");
+            
+            //Check if password matches what is in the system
+            if(name.equalsIgnoreCase(inputName) && password.equals(inputPassword))
+            {
+                //Password is correct
+                correct = true;
+            }
+            else
+            {
+                //password is wrong
+                correct = false;
+            }
+            
+            /* Output Servlet info*/
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -42,8 +71,37 @@ public class LoginServlet extends HttpServlet
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<br>");
+            out.println("<h2>" + this.getServletInfo() + "</h2>");
+            out.println("<br>");
+            out.println("<br>");
+            //output based on whether password is correct or not
+            if(correct) //correct
+            {
+                //welcome user and log them in
+                out.println("<h3>Welcome " + this.name + ", you are now logged in. </h3>");
+                out.println("<br>");
+                out.println("<br>");
+                out.println("<a href=https://www.youtube.com/watch?v=s0akG-V_Y30 >Click here!</a>");
+                out.println("<br>");
+            }
+            else //wrong
+            {
+              //give login error response
+              out.println("<h3>Username or password is incorrect!</h3>");
+              out.println("<br>");
+              //Link back to login page
+              out.println("<a href=index.html >Return to login screen</a>"); //This is weird because it doesn't like quotes
+              out.println("<br>");
+            }
             out.println("</body>");
             out.println("</html>");
+            
+            this.getServletInfo();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
         }
     }
 
@@ -86,7 +144,7 @@ public class LoginServlet extends HttpServlet
     @Override
     public String getServletInfo()
     {
-        return "Short description";
+        return "Login Status:";
     }// </editor-fold>
 
 }
