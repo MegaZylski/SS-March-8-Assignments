@@ -88,7 +88,7 @@ public class Recursion
     public static void main(String[] args)
     {
         //Create array
-        int arr [] = {2,4,4,8};
+        int arr [] = {2,4,8,8};
         
         //run recursive solution
         try

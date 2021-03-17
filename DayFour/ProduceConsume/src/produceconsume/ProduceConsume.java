@@ -46,7 +46,7 @@ public class ProduceConsume
                 {
                     try
                     {
-                        synchronized(Thread.currentThread())
+                        synchronized(q)
                             {
                         //Check if Queue isn't full
                         if(q.size() <= 7)
@@ -61,6 +61,7 @@ public class ProduceConsume
                                 //notify();
                                 //Thread.currentThread().notifyAll();
                                 q.notify();
+
                             
                         }
                         //else if q is full
@@ -97,7 +98,7 @@ public class ProduceConsume
                     try
                     {
                         //Obtain lock for q and remove elements from q
-                            synchronized(Thread.currentThread())
+                            synchronized(q)
                             {
                         //Check if Queue isn't empty
                         if(!q.isEmpty())
