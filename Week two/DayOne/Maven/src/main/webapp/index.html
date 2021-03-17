@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Programmer: Damian Zylski
+Date: 3/16/21
+System: Windows 7 Enterprise - Netbeans 12
+Project: LoginServlet
+File: Index.HTML
+
+Purpose: To create a login servlet that takes login and password as input and returns
+success or fail based on whether the login info is correct. Uses a servlet
+-->
+<html>
+    <head>
+        <title>Login Servlet</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Welcome!</h1>
+        <div>
+            <p>
+                SERVER LOGIN: 
+            </p>
+            <form action="LoginServlet" method="post" >
+                <fieldset>
+                    <legend>Please enter your username and password to login</legend>
+                    <br>
+                    <label for="Name" >Name: </label><br>
+                    <input type="text" name="Name" size="25" required="required" tabindex="1">
+                    <br>
+                    <label for="Password" >Password: </label><br>
+                    <input type="text" name="Password" size="25" required="required" tabindex="2">
+                    <br>
+                    <br>
+                </fieldset>
+                <input type="submit" value="Submit" tabindex="3" >
+            </form>
+        </div>
+    </body>
+</html>

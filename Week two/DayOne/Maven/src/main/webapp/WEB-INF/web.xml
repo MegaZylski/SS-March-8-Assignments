@@ -4,7 +4,7 @@
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>loginservlet.LoginServlet</servlet-class>
+        <servlet-class>com.mycompany.maven.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
