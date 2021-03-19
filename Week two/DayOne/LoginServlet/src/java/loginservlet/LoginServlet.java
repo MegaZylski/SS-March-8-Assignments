@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.InputMismatchException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,17 +40,18 @@ public class LoginServlet extends HttpServlet
     private final String password = "wordpass111";
     
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected boolean processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
         //Variables 
         boolean correct = false;
+        boolean requestError = false;
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
         {
             //Hard coded login info
-            
+            Servlet s = null;
             //handle input and check if login success
             String inputName = request.getParameter("Name");
             String inputPassword = request.getParameter("Password");
@@ -105,6 +107,8 @@ public class LoginServlet extends HttpServlet
         catch(IOException | InputMismatchException | IllegalArgumentException e)
         {
             e.printStackTrace();
+            requestError = true;
+            
         }
         
         //If it throws, we need to throw
@@ -156,6 +160,9 @@ public class LoginServlet extends HttpServlet
     public String getServletInfo()
     {
         return "Login Status:";
-    }// </editor-fold>
+    }
+    
+
+// </editor-fold>
 
 }
