@@ -71,7 +71,7 @@ public abstract class BaseDAO
     }
     
     //readData
-    public abstract List readData(Object o) throws ClassNotFoundException, SQLException;
+    public abstract List readData() throws ClassNotFoundException, SQLException;
     
     
 }

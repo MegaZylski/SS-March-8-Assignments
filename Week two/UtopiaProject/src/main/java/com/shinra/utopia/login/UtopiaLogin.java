@@ -2,10 +2,13 @@ package com.shinra.utopia.login;
 
 import com.shinra.utopia.entity.User;
 import com.shinra.utopia.service.AdminService;
+import com.shinra.utopia.service.LoginService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,8 +41,10 @@ public class UtopiaLogin extends HttpServlet
     
     //hard coded private login and password info, I'm sure there's a way to pull this from
     //the server but don't know how yet
-    private final String name = "Zylski";
-    private final String password = "wordpass111";
+    private String name = null;
+    private String password = null;
+    private List <User> userList;
+    private LoginService login;
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -48,17 +53,25 @@ public class UtopiaLogin extends HttpServlet
         //Variables 
         boolean correct = false;
         
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
         {
-            //Hard coded login info
+            //login servlet needs to get list of users and their info
+            login = new LoginService();
+            userList = login.getsUsers();
+            
             
             //handle input and check if login success
-            String inputName = request.getParameter("Name");
+            String inputID = request.getParameter("Name");
             String inputPassword = request.getParameter("Password");
             
+            //try to convert input id to integer
+            Integer id = Integer.parseInt(inputID);
+            
+            
             //Check if password matches what is in the system
-            if(name.equalsIgnoreCase(inputName) && password.equals(inputPassword))
+            if(login.checkLogin(id, inputPassword))
             {
                 //Password is correct
                 correct = true;
@@ -85,8 +98,9 @@ public class UtopiaLogin extends HttpServlet
             if(correct) //correct
             {
                 //welcome user and log them in
-                out.println("<h3>Welcome " + this.name + ", you are now logged in. </h3>");
-                out.println("<br>");                
+                out.println("<h3>Welcome! You are now logged in. </h3>");
+                out.println("<br>");
+               
                 out.println("<br>");
                 out.println("<a href=https://www.youtube.com/watch?v=s0akG-V_Y30 >Click here!</a>");
                 out.println("<br>");
@@ -107,9 +121,16 @@ public class UtopiaLogin extends HttpServlet
             
             out.close();
         }
-        catch(IOException | InputMismatchException | IllegalArgumentException e)
+        catch(NumberFormatException e)
         {
             e.printStackTrace();
+            System.out.println("Input is invalid!");
+            
+        }
+        catch(IOException | InputMismatchException | IllegalArgumentException | SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("Error! Something went wrong.");
         }
         
         //If it throws, we need to throw

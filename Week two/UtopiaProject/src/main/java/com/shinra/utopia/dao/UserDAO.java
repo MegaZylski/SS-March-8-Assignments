@@ -58,9 +58,31 @@ public class UserDAO extends BaseDAO
         crud("DELETE FROM user WHERE id = ?;", new Object[] {user.getUserID()});
     }
     
+    //check for valid login operation
+    public boolean checkLogin(Integer id, String password) throws ClassNotFoundException, SQLException
+    {
+        //Create statement for handling queries
+        PreparedStatement stmt = UserDAO.conn.prepareStatement("SELECT * FROM user WHERE id = ? AND password = ?");
+        //set values
+        stmt.setInt(1,id);
+        stmt.setString(2,password);
+        //execute query
+        ResultSet rs = stmt.executeQuery();
+        System.out.println("" + id + " " + password);
+        //Return true if result set exists
+        if(rs.next())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
     //Read all operation
     @Override
-    public List<User> readData(Object o) throws ClassNotFoundException, SQLException
+    public List<User> readData() throws ClassNotFoundException, SQLException
     {
         //Create new list
         List<User> userList = new ArrayList <User>();
