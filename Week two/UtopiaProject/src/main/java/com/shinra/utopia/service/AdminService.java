@@ -20,7 +20,7 @@ public class AdminService
     Utility util = new Utility();
     
     //add user
-    public void addUser() throws SQLException
+    public void addUser(User user) throws SQLException
     {
         //the connection
         Connection conn = null;
@@ -33,7 +33,12 @@ public class AdminService
             //create user object
             UserDAO udao = new UserDAO(conn);
             
- 
+            //PK
+            Integer pk = null;
+            
+            //Add new user
+            udao.addUser(user);
+            
             //commit changes if no exceptions
             conn.commit();
             //Return success message

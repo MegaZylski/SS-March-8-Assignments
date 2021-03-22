@@ -1,7 +1,10 @@
 package com.shinra.utopia.login;
 
+import com.shinra.utopia.entity.User;
+import com.shinra.utopia.service.AdminService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -83,7 +86,7 @@ public class UtopiaLogin extends HttpServlet
             {
                 //welcome user and log them in
                 out.println("<h3>Welcome " + this.name + ", you are now logged in. </h3>");
-                out.println("<br>");
+                out.println("<br>");                
                 out.println("<br>");
                 out.println("<a href=https://www.youtube.com/watch?v=s0akG-V_Y30 >Click here!</a>");
                 out.println("<br>");
@@ -101,6 +104,8 @@ public class UtopiaLogin extends HttpServlet
             out.println("</html>");
             
             this.getServletInfo();
+            
+            out.close();
         }
         catch(IOException | InputMismatchException | IllegalArgumentException e)
         {
