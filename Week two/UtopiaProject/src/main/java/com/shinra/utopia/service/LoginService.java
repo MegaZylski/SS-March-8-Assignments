@@ -88,8 +88,6 @@ public class LoginService
         {   
             e.printStackTrace();            
             //rollback changes
-            conn.rollback();
-            //return error message
         }
         finally
         {

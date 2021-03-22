@@ -46,6 +46,21 @@ public class UtopiaLogin extends HttpServlet
     private List <User> userList;
     private LoginService login;
     
+    //*isNumeric****************************************************************
+    //checks if value is numeric
+    public boolean isNumeric(String str) 
+    { 
+        try 
+        {  
+            Integer.parseInt(str);  
+            return true;
+        } 
+        catch(NumberFormatException e)
+        {  
+            return false;  
+        }  
+    }
+    
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
@@ -66,15 +81,19 @@ public class UtopiaLogin extends HttpServlet
             String inputID = request.getParameter("Name");
             String inputPassword = request.getParameter("Password");
             
-            //try to convert input id to integer
-            Integer id = Integer.parseInt(inputID);
-            
+            //Check if input id is numeric
+            boolean isNumber = isNumeric(inputID);            
             
             //Check if password matches what is in the system
-            if(login.checkLogin(id, inputPassword))
+            //Make sure input is numeric
+            if(isNumber)
             {
-                //Password is correct
-                correct = true;
+                Integer id = Integer.parseInt(inputID);
+                if(login.checkLogin(id, inputPassword))
+                {
+                    //Password is correct
+                    correct = true;
+                }
             }
             else
             {
@@ -127,13 +146,13 @@ public class UtopiaLogin extends HttpServlet
             System.out.println("Input is invalid!");
             
         }
-        catch(IOException | InputMismatchException | IllegalArgumentException | SQLException e)
+        catch(IOException | InputMismatchException | IllegalArgumentException | SQLException | IllegalStateException e)
         {
             e.printStackTrace();
             System.out.println("Error! Something went wrong.");
         }
         
-        //If it throws, we need to throw
+        //If it throws, we need to throw  
         throw new ServletException();
     }
 

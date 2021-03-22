@@ -68,7 +68,6 @@ public class UserDAO extends BaseDAO
         stmt.setString(2,password);
         //execute query
         ResultSet rs = stmt.executeQuery();
-        System.out.println("" + id + " " + password);
         //Return true if result set exists
         if(rs.next())
         {
