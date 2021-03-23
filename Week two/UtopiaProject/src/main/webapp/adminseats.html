@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+Programmer: Damian Zylski
+Date: 3/17/21
+System: Windows 7 Enterprise - Netbeans 12
+Project: Utopia
+File: adminseats.HTML
+
+Purpose: To create the option page for admin seats
+-->
+<html>
+    <head>
+        <title>ADMIN SEATS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Administrator Control Panel</h1>
+        <div>
+            
+                <fieldset>
+                    <legend>Please choose an administrator option for seats:</legend>
+                    <br>
+					<!--FLIGHT-->
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="addSeat">
+					<input type="submit" value="Add Seat" name="addSeat" tabindex="1" >
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="updateSeat">
+					<input type="submit" value="Update Seat" name="updateSeat" tabindex="2" > 
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="deleteSeat">
+					<input type="submit" value="Delete Seat" name="deleteSeat" tabindex="3" > 
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="readSeat">
+					<input type="submit" value="Read Seat" name="readSeat" tabindex="4" >
+					</form>
+					<a href="adminlanding.html" ><button>Return</button></a>
+                    <br>
+                    <br>
+                </fieldset>
+            
+        </div>
+    </body>
+</html>

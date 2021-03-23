@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+Programmer: Damian Zylski
+Date: 3/17/21
+System: Windows 7 Enterprise - Netbeans 12
+Project: Utopia
+File: admintrip.HTML
+
+Purpose: To create the option page for admin trips
+-->
+<html>
+    <head>
+        <title>ADMIN TRIPS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Administrator Control Panel</h1>
+        <div>
+            
+                <fieldset>
+                    <legend>Please choose an administrator option for Trips:</legend>
+                    <br>
+					<!--FLIGHT-->
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="trips">
+					<input type="submit" value="Manage Trips" name="addTrips" tabindex="1" >
+					</form>
+					<a href="adminlanding.html" ><button>Return</button></a>
+                    <br>
+                    <br>
+                </fieldset>
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+Programmer: Damian Zylski
+Date: 3/17/21
+System: Windows 7 Enterprise - Netbeans 12
+Project: Utopia
+File: adminairports.HTML
+
+Purpose: To create the option page for admin airports
+-->
+<html>
+    <head>
+        <title>ADMIN AIRPORTS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Administrator Control Panel</h1>
+        <div>
+            
+                <fieldset>
+                    <legend>Please choose an administrator option for airports:</legend>
+                    <br>
+					<!--FLIGHT-->
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="addAirport">
+					<input type="submit" value="Add Airport" name="addAirport" tabindex="1" >
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="updateAirport">
+					<input type="submit" value="Update Airport" name="updateAirport" tabindex="2" > 
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="deleteAirport">
+					<input type="submit" value="Delete Airport" name="deleteAirport" tabindex="3" > 
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="readAirport">
+					<input type="submit" value="Read Airport" name="readAirport" tabindex="4" >
+					</form>
+					<a href="adminlanding.html" ><button>Return</button></a>
+                    <br>
+                    <br>
+                </fieldset>
+            
+        </div>
+    </body>
+</html>

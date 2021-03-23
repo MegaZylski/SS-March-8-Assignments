@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+Programmer: Damian Zylski
+Date: 3/17/21
+System: Windows 7 Enterprise - Netbeans 12
+Project: Utopia
+File: adminBooking.HTML
+
+Purpose: To create the option page for admin Booking
+-->
+<html>
+    <head>
+        <title>ADMIN BOOKINGS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Administrator Control Panel</h1>
+        <div>
+            
+                <fieldset>
+                    <legend>Please choose an administrator option for Booking:</legend>
+                    <br>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="addBooking">
+					<input type="submit" value="Add Booking" name="addBooking" tabindex="1" >
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="updateBooking">
+					<input type="submit" value="Update Booking" name="updateBooking" tabindex="2" > 
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="deleteBooking">
+					<input type="submit" value="Delete Booking" name="deleteBooking" tabindex="3" > 
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="readBooking">
+					<input type="submit" value="Read Booking" name="readBooking" tabindex="4" >
+					</form>
+					<a href="adminlanding.html" ><button>Return</button></a>
+                    <br>
+                    <br>
+                </fieldset>
+            
+        </div>
+    </body>
+</html>

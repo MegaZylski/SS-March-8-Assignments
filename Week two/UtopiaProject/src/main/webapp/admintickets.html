@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+Programmer: Damian Zylski
+Date: 3/17/21
+System: Windows 7 Enterprise - Netbeans 12
+Project: Utopia
+File: admintickets.HTML
+
+Purpose: To create the option page for admin tickets
+-->
+<html>
+    <head>
+        <title>ADMIN TICKETS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Administrator Control Panel</h1>
+        <div>
+            
+                <fieldset>
+                    <legend>Please choose an administrator option for tickets and passengers:</legend>
+                    <br>
+					<!--FLIGHT-->
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="addTicket">
+					<input type="submit" value="Add Ticket" name="addTicket" tabindex="1" >
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="updateTicket">
+					<input type="submit" value="Update Ticket" name="updateTicket" tabindex="2" > 
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="deleteTicket">
+					<input type="submit" value="Delete Ticket" name="deleteTicket" tabindex="3" > 
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="readTicket">
+					<input type="submit" value="Read Ticket" name="readTicket" tabindex="4" >
+					</form>
+					<a href="adminlanding.html" ><button>Return</button></a>
+                    <br>
+                    <br>
+                </fieldset>
+            
+        </div>
+    </body>
+</html>

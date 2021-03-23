@@ -9,13 +9,21 @@
         <servlet-name>UtopiaLogin</servlet-name>
         <servlet-class>com.shinra.utopia.login.UtopiaLogin</servlet-class>
     </servlet>
-        <servlet-mapping>
+    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>com.shinra.utopia.admin.AdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
         <servlet-name>Utopia</servlet-name>
         <url-pattern>/Utopia</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UtopiaLogin</servlet-name>
         <url-pattern>/UtopiaLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/AdminServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>

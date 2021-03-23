@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+Programmer: Damian Zylski
+Date: 3/17/21
+System: Windows 7 Enterprise - Netbeans 12
+Project: Utopia
+File: adminusers.HTML
+
+Purpose: To create the option page for admin Users
+-->
+<html>
+    <head>
+        <title>ADMIN USERS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Administrator Control Panel</h1>
+        <div>
+            
+                <fieldset>
+                    <legend>Please choose an administrator option for Users:</legend>
+                    <br>
+					<!--FLIGHT-->
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="addUsers">
+					<input type="submit" value="Add Users" name="addUsers" tabindex="1" >
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="updateUsers">
+					<input type="submit" value="Update Users" name="updateUsers" tabindex="2" > 
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="deleteUsers">
+					<input type="submit" value="Delete Users" name="deleteUsers" tabindex="3" > 
+					</form>
+					<form action="AdminServlet" method="post" >
+					<input type="hidden" id="custId" name="action" value="readUsers">
+					<input type="submit" value="Read Users" name="readUsers" tabindex="4" >
+					</form>
+					<a href="adminlanding.html" ><button>Return</button></a>
+                    <br>
+                    <br>
+                </fieldset>
+            
+        </div>
+    </body>
+</html>

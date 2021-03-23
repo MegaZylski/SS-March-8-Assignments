@@ -1,34 +1,32 @@
-package com.shinra.utopia.login;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.shinra.utopia.admin;
 
 import com.shinra.utopia.entity.User;
 import com.shinra.utopia.service.AdminService;
 import com.shinra.utopia.service.LoginService;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URI;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /*
  * Programmer: Damian Zylski
  * Project:    LoginServlet
- * Date:       03/20/2021
+ * Date:       03/22/2021
  * System:     Windows 7 Enterprise - Netbeans 12
  * 
- * Purpose:    To handle login requests for the utopia server. 
+ * Purpose:    To handle login requests for administrator functions
  */
-
-@WebServlet("/utopialogin")
-public class UtopiaLogin extends HttpServlet
+public class AdminServlet extends HttpServlet
 {
+    private AdminService admin;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,28 +37,6 @@ public class UtopiaLogin extends HttpServlet
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    //hard coded private login and password info, I'm sure there's a way to pull this from
-    //the server but don't know how yet
-    private List <User> userList;
-    private LoginService login;
-    
-    //*isNumeric****************************************************************
-    //checks if value is numeric
-    public boolean isNumeric(String str) 
-    { 
-        try 
-        {  
-            Integer.parseInt(str);  
-            return true;
-        } 
-        catch(NumberFormatException e)
-        {  
-            return false;  
-        }  
-    }
-    
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
@@ -75,14 +51,15 @@ public class UtopiaLogin extends HttpServlet
         try (PrintWriter out = response.getWriter())
         {
             //login servlet needs to get list of users and their info
-            login = new LoginService();
-            userList = login.getsUsers();
+            admin = new AdminService();
             User user = null;
             Integer role = 2;
             
             
             //handle input and check if login success
-            String inputID = request.getParameter("Name");
+            String inputID = request.getParameter("action");
+            System.out.println(inputID);
+            System.out.println("Quack!");
             String inputPassword = request.getParameter("Password");
             
             //Check if input id is numeric
@@ -93,12 +70,12 @@ public class UtopiaLogin extends HttpServlet
             if(isNumber)
             {                             
                 Integer id = Integer.parseInt(inputID);
-                if(login.checkLogin(id, inputPassword))
+                if(false)
                 {
                     //Password is correct
                     correct = true;
                     //Create user
-                    user = login.getUser(id);  
+                    //user = login.getUser(id);  
                 }
             }
             else
@@ -152,7 +129,7 @@ public class UtopiaLogin extends HttpServlet
             java.awt.Desktop.getDesktop().browse(java.net.URI.create("http://localhost:8080/UtopiaProject/loginerror.html"));
             
         }
-        catch(IOException | InputMismatchException | IllegalArgumentException | SQLException | IllegalStateException e)
+        catch(IOException | InputMismatchException | IllegalArgumentException | IllegalStateException e)
         {
             e.printStackTrace();
             System.out.println("Error! Something went wrong.");
@@ -163,8 +140,6 @@ public class UtopiaLogin extends HttpServlet
             //If it throws, we need to throw  
             throw new ServletException();
         }
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -195,12 +170,22 @@ public class UtopiaLogin extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        //set content type
-        response.setContentType("text/html");        
-        //process request
-        RequestDispatcher rd = request.getRequestDispatcher("/path");
-        //rd.forward(request, response);
         processRequest(request, response);
+    }
+    
+    //*isNumeric****************************************************************
+    //checks if value is numeric
+    public boolean isNumeric(String str) 
+    { 
+        try 
+        {  
+            Integer.parseInt(str);  
+            return true;
+        } 
+        catch(NumberFormatException e)
+        {  
+            return false;  
+        }  
     }
 
     /**
@@ -211,7 +196,7 @@ public class UtopiaLogin extends HttpServlet
     @Override
     public String getServletInfo()
     {
-        return "Login Status:";
+        return "Short description";
     }// </editor-fold>
 
 }

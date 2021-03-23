@@ -29,22 +29,6 @@ public class UserDAO extends BaseDAO
     {
         crud("INSERT INTO user(id, role_id, given_name, family_name, username, email, password, phone) VALUES(?,?,?,?,?,?,?,?);", new Object[] {user.getUserID(), 
             user.getRole(), user.getFirstName(), user.getLastName(), user.getUserName(), user.getEmail(), user.getPassword(), user.getPhone()});
-        //Create statement for handling queries
-        //PreparedStatement stmt = getConnection().prepareStatement("INSERT INTO user(id, role_id, given_name, family_name, username, email, password, phone) VALUES(?,?,?,?,?,?,?,?);");
-        //set values
-        /*
-        stmt.setInt(1, user.getUserID());
-        stmt.setInt(2, user.getRole());
-        stmt.setString(3, user.getFirstName());
-        stmt.setString(4, user.getLastName());
-        stmt.setString(5, user.getUserName());
-        stmt.setString(6, user.getEmail());
-        stmt.setString(7, user.getPassword());
-        stmt.setString(8, user.getPhone());
-        //execute query
-        stmt.executeUpdate();
-        */
-        
     }
     //update operation
     public void updateUser(User user, int oldID) throws ClassNotFoundException, SQLException
@@ -56,6 +40,26 @@ public class UserDAO extends BaseDAO
     public void deleteUser(User user) throws ClassNotFoundException, SQLException
     {
         crud("DELETE FROM user WHERE id = ?;", new Object[] {user.getUserID()});
+    }
+    
+    //getIndex operation
+    public User getUser(Integer ID) throws ClassNotFoundException, SQLException
+    {
+        //Create user
+        User user = null;
+        //Create statement for handling queries
+        PreparedStatement stmt = UserDAO.conn.prepareStatement("SELECT * FROM user WHERE id = ?");
+        //set values
+        stmt.setInt(1,ID);
+        //execute query
+        ResultSet rs = stmt.executeQuery();
+        //Return true if result set exists
+        if(rs.next())
+        {
+            user = new User(rs.getInt("id"),rs.getInt("role_id"),rs.getString("username"), rs.getString("password"), rs.getString("given_name"),
+            rs.getString("family_name"), rs.getString("email"), rs.getString("phone"));
+        }
+        return user;
     }
     
     //check for valid login operation

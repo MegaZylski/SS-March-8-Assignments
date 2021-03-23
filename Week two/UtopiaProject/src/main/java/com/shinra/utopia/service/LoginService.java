@@ -99,4 +99,36 @@ public class LoginService
         }
         return false;
     }
+    
+    public User getUser(Integer id) throws SQLException
+    {
+        //the connection
+        Connection conn = null;
+        User user = null;
+        
+        try
+        {
+            //get connection
+            conn = util.getConnection();
+            
+            //create user object
+            UserDAO udao = new UserDAO(conn);
+            
+            user = udao.getUser(id);
+        }
+        catch(SQLException | ClassNotFoundException | NullPointerException e)
+        {   
+            e.printStackTrace();            
+            //rollback changes
+        }
+        finally
+        {
+            if(conn != null)
+            {
+                //close connection
+                conn.close();
+            }
+        }
+        return user;
+    }
 }
